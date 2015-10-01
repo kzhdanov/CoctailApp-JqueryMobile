@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<list>
+  <Cocktail id = "1">
+    <name>Лонг Айленд</name>
+    <alco>1</alco>
+    <type>2</type>
+  </Cocktail>
+  <Cocktail id = "2">
+    <name>Мохито</name>
+    <alco>1</alco>
+    <type>2</type>
+  </Cocktail>
+  <Cocktail id = "3">
+    <name>Куба Либре</name>
+    <alco>1</alco>
+    <type>2</type>
+  </Cocktail>
+  <Cocktail id = "4">
+    <name>Сент-Клемент</name>
+    <alco>0</alco>
+    <type>2</type>
+  </Cocktail>
+</list>

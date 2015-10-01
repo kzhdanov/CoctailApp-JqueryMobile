@@ -1,0 +1,54 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>CocApp</title>
+    <link rel="stylesheet" href="Style/Main.css" />
+    <link rel="stylesheet" href="Style/jquery.mobile-1.4.5.min.css" />
+    <script src="Scripts/jquery-2.1.4.js"></script>
+    <script type="text/javascript" src="Scripts/jquery.mobile-1.4.5.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+</head>
+<body>
+    <div data-role="page" data-theme="a">
+        <div data-role="header">
+            <h3><img src="img/Recipes lit.png" /></h3>
+        </div>
+        <div data-role="content">
+            <ul data-role="listview" data-filter="true" data-filter-placeholder="Поиск" id="CocktailsListContent"><!--сюда вставим все коктейли из файла--></ul>
+        </div>
+    </div>
+    <script src="Scripts/Main.js"></script>
+    <script type="text/javascript">
+    $(document).bind('ready', function () {
+        $.when(RenderList()).then(function () {
+            $('#CocktailsListContent').children().on('click', function () {
+                var curId = $(this).children()[0].id
+                IdAction.setId(curId);
+            });
+        });
+        //Функция рендера списка
+        function RenderList() {
+            $('#CocktailsListContent').empty();
+            var data = Pars().GetCocktailsList('DB/AllCoctailsList.xml');
+            if (data != null && data.length > 0) {
+                for (var i = 0; i < data.length; i++) {
+                    var content = '<li><a href="recipe.html" data-transition="slide" id="' + data[i].id + '">' + data[i].Name + '</a><span class="ui-li-aside">' + EnumModule.AlcoEnum()[data[i].Alco] + '</span></li>'
+                    $('#CocktailsListContent').append(content);
+                }
+            }
+            $('#CocktailsListContent').listview('refresh');
+        }
+        //Забиндимся на переход на другую страницу
+        $(document).bind('pagebeforeshow', function (toPage, options) {
+            if (toPage.target.id === "Recipe")
+            {
+                console.log($('#Recipe'));
+                console.log(IdAction.getId());
+            }
+        });
+    }); 
+    </script>
+</body>
+</html>
