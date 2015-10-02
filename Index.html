@@ -12,7 +12,7 @@
 </head>
 <body>
     <div data-role="page" data-theme="a">
-        <div data-role="header">
+        <div data-role="header" style="background-color: #F8F8F8;">
             <h3>Рецепты</h3>
         </div>
         <div data-role="content">
@@ -34,7 +34,7 @@
             var data = Pars().GetCocktailsList('DB/AllCoctailsList.xml');
             if (data != null && data.length > 0) {
                 for (var i = 0; i < data.length; i++) {
-                    var content = '<li><a href="recipe.html" data-transition="slide" id="' + data[i].id + '">' + data[i].Name + '</a><span class="ui-li-aside">' + EnumModule.AlcoEnum()[data[i].Alco] + '</span></li>'
+                    var content = '<li><a href="recipe.html" data-transition="slide" id="' + data[i].id + '">' + data[i].Name + '<p class="smallText">' + EnumModule.AlcoEnum()[data[i].Alco] + '</p></a><span class="ui-li-aside">' + EnumModule.AlcoSizeEnum()[data[i].AlcoSize] + '</span></li>'
                     $('#CocktailsListContent').append(content);
                 }
             }
