@@ -1,3 +1,23 @@
 #CocktailsListContent a{
-    background-color: #c6b5a5;
+    background-color: #FFF7DC;
+}
+
+.ui-content {
+    padding-top: 0.1em !important;
+    background-color: floralwhite !important;
+}
+
+.ui-page {
+    background-color: floralwhite !important;
+}
+
+.ui-input-search {
+    border-radius: 0 !important;
+}
+
+p.smallText {
+    line-height: 1;
+    color: brown;
+    margin: 0 !important;
+    font-family: monospace;
 }
