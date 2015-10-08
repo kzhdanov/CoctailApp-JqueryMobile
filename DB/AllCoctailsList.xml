@@ -6,12 +6,13 @@
     <type>2</type>
     <img>1.jpg</img>
     <content>
-      <N>Водка~50 мл</N>
-      <N>Пиво~150 мл</N>
+      <item>Водка~50 мл</item>
+      <item>Пиво~150 мл</item>
     </content>
     <adContent>
-      <N>Сахар</N>
+      <item>Сахар</item>
     </adContent>
+    <how>как готовить</how>
     <invented>США</invented>
   </Cocktail>
   <Cocktail id = "2">

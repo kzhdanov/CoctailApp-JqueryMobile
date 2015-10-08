@@ -60,21 +60,43 @@ var Pars = (function () {
     }
 
     function GetCoctailFullInform(id) {
-        var item = {};
+        var item = {
+            Content: [],
+            AdditionalContent: []
+        };
+        var formula = {
+            el: "",
+            size: ""
+        };
         $.ajax({
             url: 'DB/AllCoctailsList.xml',
             dataType: "xml",
             async: false,
             success: function (document) {
+                var i = 0;
+                var temp, t;
                 $(document).find("Cocktail").each(function () {
                     if ($(this).attr('id') == id) {
                         item.Id = id;
-                        item.Name = $(this).find('name').text(),
-                        item.Alco = $(this).find('alco').text(),
-                        item.AlcoSize = $(this).find('type').text(),
-                        item.Img = $(this).find('img').text(),
-                        item.Content = $(this).find('content').text(),
-                        item.AdditionalContent = $(this).find('adContent').text()
+                        item.Name = $(this).find('name').text();
+                        item.Alco = $(this).find('alco').text();
+                        item.AlcoSize = $(this).find('type').text();
+                        item.Img = $(this).find('img').text();
+                        //Разбираем состав
+                        temp = $(this).find('content').find('item');
+                        for (i; i < temp.length; i++) {
+                            t = temp[i].textContent.split('~');
+                            formula.el = t[0];
+                            formula.size = t[1];
+                            item.Content.push(formula);
+                        }
+                        //Разбираем дополнительные компоненты
+                        temp = $(this).find('adContent').find('item');
+                        for (i = 0; i < temp.length; i++) {
+                            item.AdditionalContent.push(temp[i]);
+                        }
+                        item.Invented = $(this).find('invented').text();
+                        item.How = $(this).find('how').text();
                     }
                 }); 
             },
