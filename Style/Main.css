@@ -21,3 +21,13 @@ p.smallText {
     margin: 0 !important;
     font-family: monospace;
 }
+
+span.sidetext {
+    font-family: monospace;
+    line-height: 2.5;
+}
+
+#RecipeMainPage {
+    padding: 0;
+    background-color: floralwhite !important;
+}

@@ -13,6 +13,7 @@
 <body>
     <div data-role="page" data-theme="a">
         <div data-role="header" style="background-color: #F8F8F8;">
+            <a href="Settings" data-icon="gear" style="height: 1em;"></a>
             <h3>Рецепты</h3>
         </div>
         <div data-role="content">
@@ -23,7 +24,7 @@
     <script type="text/javascript">
     $(document).bind('ready', function () {
         $.when(RenderList()).then(function () {
-            $('#CocktailsListContent').children().on('click', function () {
+            $('#CocktailsListContent').children().on('tap', function () {
                 var curId = $(this).children()[0].id
                 IdAction.setId(curId);
             });
@@ -34,7 +35,7 @@
             var data = Pars().GetCocktailsList('DB/AllCoctailsList.xml');
             if (data != null && data.length > 0) {
                 for (var i = 0; i < data.length; i++) {
-                    var content = '<li><a href="recipe.html" data-transition="slide" id="' + data[i].id + '">' + data[i].Name + '<p class="smallText">' + EnumModule.AlcoEnum()[data[i].Alco] + '</p></a><span class="ui-li-aside">' + EnumModule.AlcoSizeEnum()[data[i].AlcoSize] + '</span></li>'
+                    var content = '<li><a href="recipe.html" data-transition="slide" id="' + data[i].id + '">' + data[i].Name + '<p class="smallText">' + EnumModule.AlcoEnum()[data[i].Alco] + '</p></a><span class="ui-li-aside sidetext">' + EnumModule.AlcoSizeEnum()[data[i].AlcoSize] + '</span></li>'
                     $('#CocktailsListContent').append(content);
                 }
             }
@@ -44,11 +45,15 @@
         $(document).bind('pagebeforeshow', function (toPage, options) {
             if (toPage.target.id === "Recipe")
             {
-                console.log($('#Recipe'));
-                console.log(IdAction.getId());
+                var currItem = {};
+                currItem = Pars().GetCoctailFullInform(IdAction.getId());
+
+                if (currItem.Img != "")
+                    $('#ContentImg').attr('src', "img/" + currItem.Img);
+
             }
         });
-    }); 
+    });
     </script>
 </body>
 </html>

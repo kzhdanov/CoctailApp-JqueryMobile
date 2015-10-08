@@ -4,6 +4,15 @@
     <name>Лонг Айленд</name>
     <alco>1</alco>
     <type>2</type>
+    <img>1.jpg</img>
+    <content>
+      <N>Водка~50 мл</N>
+      <N>Пиво~150 мл</N>
+    </content>
+    <adContent>
+      <N>Сахар</N>
+    </adContent>
+    <invented>США</invented>
   </Cocktail>
   <Cocktail id = "2">
     <name>Мохито</name>
@@ -19,5 +28,10 @@
     <name>Сент-Клемент</name>
     <alco>0</alco>
     <type>2</type>
+  </Cocktail>
+  <Cocktail id = "5">
+    <name>TEST</name>
+    <alco>1</alco>
+    <type>1</type>
   </Cocktail>
 </list>
