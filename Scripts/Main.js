@@ -88,8 +88,10 @@ var Pars = (function () {
                             t = temp[i].textContent.split('~');
                             formula.el = t[0];
                             formula.size = t[1];
-                            item.Content.push(formula);
+                        
+                            item.Content.push({ 'el': formula.el, 'size': formula.size });
                         }
+                        
                         //–азбираем дополнительные компоненты
                         temp = $(this).find('adContent').find('item');
                         for (i = 0; i < temp.length; i++) {
@@ -129,6 +131,16 @@ var IdAction = (function () {
         currentId = 0;
     }
 })();
-
 //************************************************//
 //модуль отрисовки страницы Recipe
+var RenderBody = (function () {
+    return {
+        Render: Render
+    };
+
+    function Render(currItem) {       
+        var source = $("#mainTemplate").html();
+        var template = Handlebars.compile(source);
+        $('#Name').html(template({ name: currItem.Name }));
+    }
+});
