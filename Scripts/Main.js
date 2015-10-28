@@ -95,7 +95,8 @@ var Pars = (function () {
                         //Разбираем дополнительные компоненты
                         temp = $(this).find('adContent').find('item');
                         for (i = 0; i < temp.length; i++) {
-                            item.AdditionalContent.push(temp[i]);
+                            window.s = temp[i];
+                            item.AdditionalContent.push({ 'el': temp[i].textContent });
                         }
                         item.Invented = $(this).find('invented').text();
                         item.How = $(this).find('how').text();
@@ -141,6 +142,26 @@ var RenderBody = (function () {
     function Render(currItem) {       
         var source = $("#mainTemplate").html();
         var template = Handlebars.compile(source);
-        $('#Name').html(template({ name: currItem.Name }));
+        
+        $('#Name').html(template({
+            name: currItem.Name,
+            alcoType: currItem.Alco,
+            alco: EnumModule.AlcoEnum()[currItem.Alco],
+            alcoSize: EnumModule.AlcoSizeEnum()[currItem.AlcoSize],
+            ingredients: currItem.Content,
+            adIngredients: currItem.AdditionalContent,
+            how: currItem.How,
+            invented: currItem.Invented
+        }));
+    }
+});
+
+//Хелпер для Хенделбар
+Handlebars.registerHelper('ifFree', function (conditional, options) {
+    if (conditional == 0) {
+        return options.fn(this);
+    }
+    else {
+        return options.inverse(this);
     }
 });

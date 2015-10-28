@@ -52,6 +52,7 @@
                 if (currItem.Img != "")
                     $('#ContentImg').attr('src', "img/" + currItem.Img);
                 //Отрендарим страницу с составом коктейля
+                console.log(currItem);
                 RenderBody().Render(currItem);
             }
         });
